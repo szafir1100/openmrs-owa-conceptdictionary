@@ -5,7 +5,7 @@ conceptDictControllers.controller('ClassesListCtrl',
         function($scope, loadClasses, ClassesService, $location, $route, $routeParams, openmrsRest) {
 
 
-	$scope.classes = loadClasses;
+	$scope.classes = loadClasses.results;
 	//loadClasses is resolve function, it returns array of concept class objects using ClassesService service
 		
 	$scope.go = function ( hash ) {
@@ -24,8 +24,8 @@ conceptDictControllers.controller('ClassesListCtrl',
 	            
 	    });
 	    //updates classes list in scope after deletion
-	    ClassesService.getAll().then(function(data) {
-	    	$scope.classes = data;
+	    openmrsRest.listFull('conceptclass').then(function(response) {
+	    	$scope.classes = response.results;
 	    	$route.reload();});
 	}
 
@@ -34,7 +34,7 @@ conceptDictControllers.controller('ClassesListCtrl',
 
 conceptDictControllers.controller('ClassesEditCtrl', ['$scope', 'ClassesService', '$routeParams', '$location', 'openmrsRest', 
                                                       function($scope, ClassesService, $routeParams, $location, openmrsRest ) {
-		openmrsRest.getFull('conceptclass', {uuid: $routeParams.classUUID}).then(function(respond){
+		openmrsRest.getFull('conceptclass', {uuid: $routeParams.classUUID}).then(function(respond) {
 			$scope.singleClass = respond;
 		});
       
@@ -100,7 +100,7 @@ conceptDictControllers.controller('ClassAddCtrl', ['$scope', 'ClassesService', '
 
 conceptDictControllers.controller('DataTypesListCtrl', ['$scope', 'loadDataTypes', 'DataTypesService', '$routeParams', 'openmrsRest',
                                                         function($scope, loadDataTypes, DataTypesService, $routeParams, openmrsRest){
-	$scope.dataTypes = loadDataTypes;		
+	$scope.dataTypes = loadDataTypes.results;
 	
 }]);
 

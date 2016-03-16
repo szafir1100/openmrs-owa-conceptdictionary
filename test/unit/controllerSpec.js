@@ -45,7 +45,7 @@ describe('Concept dictionary controllers', function() {
 
 
     it('should create "classes" model with 2 classes fetched', function() {
-      expect(scope.classes).toEqualData(
+      expect(scope.classes.results).toEqualData(
     		  [{name: 'Anatomy', description: 'Anatomic sites / descriptors', uuid: 'ad491c7a-c2cc-11de-8d13-0010c6dffd0f'},
                {name: 'Procedure', description: 'Describes a clinical procedure', uuid: 'bd490bf4-c2cc-11de-8d13-0010c6dffd0f'}]);
     });
@@ -178,7 +178,7 @@ describe('Concept dictionary controllers', function() {
    	 
    	 it('Should load all dataTypes', function(){ 
    		 
-   		 expect(scope.dataTypes).toEqualData([{name: 'Date Datatype', description: 'Date Field Gen Datatype Handler'},
+   		 expect(scope.dataTypes.results).toEqualData([{name: 'Date Datatype', description: 'Date Field Gen Datatype Handler'},
    		                                     {name: 'Boolean Datatype', description: 'Boolean Field Gen Datatype Handler'}]);
    		 
    	 });
